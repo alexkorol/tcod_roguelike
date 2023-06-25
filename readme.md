@@ -5,6 +5,11 @@ This is a basic roguelike game using the libtcod library. The player explores a 
 ## Quick start:
 
 Install Python 3.8+ and libtcod 1.6.7+.
+
+```
+pip install tcod
+```
+
 Download the repo.
 Run 'python3 main.py' to start the game.
 

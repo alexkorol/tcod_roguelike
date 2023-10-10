@@ -15,3 +15,6 @@ class Fighter(BaseComponent):
     @hp.setter
     def hp(self, value: int) -> None:
         self._hp = max(0, min(value, self.max_hp))
+
+    def take_damage(self, amount: int) -> None:
+        self.hp -= amount

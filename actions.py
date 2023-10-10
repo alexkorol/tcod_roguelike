@@ -95,6 +95,11 @@ class MovementAction(ActionWithDirection):
 class BumpAction(ActionWithDirection):
     def perform(self) -> None:
         if self.target_actor:
+            if self.target_actor.fighter:
+                damage = self.entity.fighter.power - self.target_actor.fighter.defense
+                if damage > 0:
+                    self.target_actor.fighter.take_damage(damage)
+                return
             return MeleeAction(self.entity, self.dx, self.dy).perform()
 
         else:

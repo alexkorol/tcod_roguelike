@@ -18,3 +18,5 @@ class Fighter(BaseComponent):
 
     def take_damage(self, amount: int) -> None:
         self.hp -= amount
+        if self.hp <= 0:
+            self.entity.remove()

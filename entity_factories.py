@@ -8,6 +8,7 @@ player = Actor(
     name="Player",
     ai_cls=HostileEnemy,
     fighter=Fighter(hp=30, defense=2, power=5),
+    render_order=RenderOrder.ACTOR,
 )
 
 orc = Actor(
@@ -16,6 +17,7 @@ orc = Actor(
     name="Orc",
     ai_cls=HostileEnemy,
     fighter=Fighter(hp=10, defense=0, power=3),
+    render_order=RenderOrder.ACTOR,
 )
 troll = Actor(
     char="T",
@@ -23,4 +25,5 @@ troll = Actor(
     name="Troll",
     ai_cls=HostileEnemy,
     fighter=Fighter(hp=16, defense=1, power=4),
+    render_order=RenderOrder.ACTOR,
 )

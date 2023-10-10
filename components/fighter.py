@@ -16,7 +16,22 @@ class Fighter(BaseComponent):
     def hp(self, value: int) -> None:
         self._hp = max(0, min(value, self.max_hp))
 
+    def die(self) -> None:
+        if self.entity == self.engine.player:
+            death_message = "You died!"
+        else:
+            death_message = f"{self.entity.name} is dead!"
+
+        self.entity.char = "%"
+        self.entity.color = (191, 0, 0)
+        self.entity.blocks_movement = False
+        self.entity.ai = None
+        self.entity.name = f"{self.entity.name} Corpse"
+        self.entity.render_order = RenderOrder.CORPSE
+
+        print(death_message)
+
     def take_damage(self, amount: int) -> None:
         self.hp -= amount
         if self.hp <= 0:
-            self.entity.remove()
+            self.die()

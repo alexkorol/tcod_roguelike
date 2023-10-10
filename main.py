@@ -6,6 +6,7 @@ import tcod
 from engine import Engine
 import entity_factories
 from procgen import generate_dungeon
+from components.render_order import RenderOrder
 
 
 def main() -> None:

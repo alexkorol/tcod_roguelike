@@ -1,6 +1,7 @@
 from components.ai import HostileEnemy
 from components.fighter import Fighter
 from entity import Actor
+from components.render_order import RenderOrder
 
 player = Actor(
     char="@",

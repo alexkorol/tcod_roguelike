@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from components.component import Component
 from components.fighter import Fighter
 from exceptions import Impossible
 

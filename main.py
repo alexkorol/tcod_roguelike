@@ -67,11 +67,19 @@ def render_bar(console: tcod.Console, current_value: int, maximum_value: int, to
         int(total_width / 2), 1, f"HP: {current_value}/{maximum_value}", fg=(255, 255, 255), alignment=tcod.CENTER
     )
 
-def render_messages(console: tcod.Console, messages: List[str]) -> None:
+def render_gui(console: tcod.Console, messages: List[str]) -> None:
     y = console.height - 2
     for message in messages:
         console.print(console.width - 2, y, message, fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
         y -= 1
+
+def main() -> None:
+    # ... existing code ...
+
+    while True:
+        engine.render(console=root_console, context=context)
+        render_gui(root_console, engine.messages)
+        engine.event_handler.handle_events()
 
 if __name__ == "__main__":
     main()

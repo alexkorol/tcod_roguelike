@@ -53,9 +53,11 @@ def main() -> None:
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
+        root_console.clear()
 
         while True:
             engine.render(console=root_console, context=context)
+            root_console.flush()
             render_messages(root_console, 0, root_console.height - len(engine.message_log.get_messages()), engine.message_log)
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
             engine.event_handler.handle_events()

@@ -8,6 +8,21 @@ if TYPE_CHECKING:
     from engine import Engine
     from entity import Actor, Entity
 
+class Action:
+    def __init__(self, entity: Actor):
+        """
+        A base class for all action classes.
+        :param entity: The Actor that performs the action.
+        """
+        super().__init__()
+        self.entity = entity
+
+    def perform(self) -> None:
+        """
+        Perform this action with the objects needed to determine its scope.
+        This method must be overridden by Action subclasses.
+        """
+        raise NotImplementedError()
 
 class PickupAction(Action):
     """Represents the action of picking up an item."""

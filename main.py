@@ -66,6 +66,7 @@ def main() -> None:
 
         while True:
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
+            render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
             engine.render(console=root_console, context=context)
             engine.event_handler.handle_events()
             

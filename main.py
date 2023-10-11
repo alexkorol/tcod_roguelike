@@ -43,7 +43,10 @@ def main() -> None:
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
 
-    engine = Engine(player=player, message_console=message_console)
+    if isinstance(player, Entity) and isinstance(message_console, Console):
+        engine = Engine(player=player, message_console=message_console)
+    else:
+        raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
 
     engine.game_map = generate_dungeon(
         max_rooms=max_rooms,
@@ -68,11 +71,17 @@ from render_functions import render_bar, render_messages
 
 def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, messages: List[str]) -> None:
     print("render_gui called")
-    render_bar(console, current_value, maximum_value, total_width)
+    if isinstance(console, Console) and isinstance(current_value, int) and isinstance(maximum_value, int) and isinstance(total_width, int):
+        render_bar(console, current_value, maximum_value, total_width)
+    else:
+        raise TypeError("Console must be an instance of Console, and current_value, maximum_value, and total_width must be integers.")
     y = console.height - 2
-    for message in messages:
-        console.print(console.width - 2, y, message, fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
-        y -= 1
+    if isinstance(messages, Iterable) and all(isinstance(message, str) for message in messages):
+        for message in messages:
+            console.print(console.width - 2, y, message, fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
+            y -= 1
+    else:
+        raise TypeError("Messages must be iterable and each message must be a string.")
 
 if __name__ == "__main__":
     main()

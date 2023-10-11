@@ -19,10 +19,10 @@ class Engine:
     message_log: MessageLog
     message_console: Console
 
-    def __init__(self, player: Entity, message_console: Console):
+    def __init__(self, player: Entity, message_console: Console, message_log: MessageLog):
         self.event_handler: EventHandler = EventHandler(self)
         self.player = player
-        self.message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
+        self.message_log = message_log
         self.message_console = message_console
 
     def handle_enemy_turns(self) -> None:

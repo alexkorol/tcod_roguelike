@@ -51,8 +51,16 @@ def main() -> None:
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
+        def render_messages(console: Console, x: int, y: int, messages: List[str]) -> None:
+            message_console = Console(console.width, len(messages))
+            message_console.draw_frame(0, 0, message_console.width, message_console.height)
+            for i, message in enumerate(messages):
+                message_console.print(0, i, message)
+            console.blit(message_console, x, y)
+
         while True:
             engine.render(console=root_console, context=context)
+            render_messages(root_console, 0, root_console.height - len(engine.messages), engine.messages)
             render_gui(root_console, engine.messages)
             engine.event_handler.handle_events()
             

@@ -2,6 +2,7 @@
 import copy
 from typing import List
 from tcod.console import Console
+from message_log import MessageLog
 
 import tcod
 

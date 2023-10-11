@@ -14,10 +14,12 @@ if TYPE_CHECKING:
 
 class Engine:
     game_map: GameMap
+    messages: List[str]
     
     def __init__(self, player: Entity):
         self.event_handler: EventHandler = EventHandler(self)
         self.player = player
+        self.messages = []
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:

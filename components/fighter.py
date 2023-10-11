@@ -1,5 +1,5 @@
 from components.base_component import BaseComponent
-
+from components.render_order import RenderOrder
 
 class Fighter(BaseComponent):
     def __init__(self, hp: int, defense: int, power: int):

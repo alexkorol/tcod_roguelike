@@ -1,9 +1,8 @@
 from components.ai import HostileEnemy
 from components.fighter import Fighter
 from entity import Actor
-from entity import Inventory
+from components.inventory import Inventory
 from components.render_order import RenderOrder
-# comment
 from components.consumable import Consumable
 
 health_potion = Item(

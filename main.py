@@ -44,26 +44,26 @@ def main() -> None:
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
 
-    if isinstance(player, Entity) and isinstance(message_console, Console):
-        engine = Engine(player=player, message_console=message_console)
-    else:
-        raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
+        if isinstance(player, Entity) and isinstance(message_console, Console):
+            engine = Engine(player=player, message_console=message_console)
+        else:
+            raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
 
-    engine.game_map = generate_dungeon(
-        max_rooms=max_rooms,
-        room_min_size=room_min_size,
-        room_max_size=room_max_size,
-        map_width=map_width,
-        map_height=map_height,
-        max_monsters_per_room=max_monsters_per_room,
-        engine=engine,
-    )
+        engine.game_map = generate_dungeon(
+            max_rooms=max_rooms,
+            room_min_size=room_min_size,
+            room_max_size=room_max_size,
+            map_width=map_width,
+            map_height=map_height,
+            max_monsters_per_room=max_monsters_per_room,
+            engine=engine,
+        )
 
-    engine.update_fov()
-    root_console.clear()
-    message_console.clear()
+        engine.update_fov()
+        root_console.clear()
+        message_console.clear()
 
-    while True:
+        while True:
             engine.render(console=root_console, context=context)
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
             engine.event_handler.handle_events()

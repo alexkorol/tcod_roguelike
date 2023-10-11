@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
+from message_log import MessageLog, Message
 
 from tcod.context import Context
 from tcod.console import Console
@@ -15,12 +16,12 @@ if TYPE_CHECKING:
 
 class Engine:
     game_map: GameMap
-    messages: List[str]
+    message_log: MessageLog
     
     def __init__(self, player: Entity):
         self.event_handler: EventHandler = EventHandler(self)
         self.player = player
-        self.messages = []
+        self.message_log = MessageLog(0, 0, 4)
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:

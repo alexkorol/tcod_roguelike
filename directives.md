@@ -1,4 +1,4 @@
-1. In the `InventoryDropHandler` class in `input_handlers.py`, the `ev_keydown` method is defined twice, which can cause unexpected behavior.
+1. [Completed] In the `InventoryDropHandler` class in `input_handlers.py`, the `ev_keydown` method is defined twice, which can cause unexpected behavior.
 
 2. In the `render_functions.py` file, the import statement for the `MessageLog` class is missing.
 

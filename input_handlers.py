@@ -105,8 +105,6 @@ class InventoryDropHandler(InventoryEventHandler):
             return DropItem(player, item)
 
 
-    def ev_quit(self, event: tcod.event.Quit) -> Optional[Action]:
-        raise SystemExit()
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
         action: Optional[Action] = None

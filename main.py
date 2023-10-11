@@ -55,10 +55,10 @@ def main() -> None:
     )
 
     engine.update_fov()
-        root_console.clear()
-        message_console.clear()
+    root_console.clear()
+    message_console.clear()
 
-        while True:
+    while True:
             engine.render(console=root_console, context=context, n=4)
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
             engine.event_handler.handle_events()

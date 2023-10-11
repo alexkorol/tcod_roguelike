@@ -51,10 +51,18 @@ def main() -> None:
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
-        while True:
-            engine.render(console=root_console, context=context)
-            render_gui(root_console, engine.messages)
-            engine.event_handler.handle_events()
+        with tcod.context.new_terminal(
+            screen_width,
+            screen_height,
+            tileset=tileset,
+            title="Alexei's Roguelike",
+            vsync=True,
+        ) as context:
+            root_console = tcod.Console(screen_width, screen_height, order="F")
+            while True:
+                engine.render(console=root_console, context=context)
+                render_gui(root_console, engine.messages)
+                engine.event_handler.handle_events()
             
 def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
     bar_width = int(float(current_value) / maximum_value * total_width)

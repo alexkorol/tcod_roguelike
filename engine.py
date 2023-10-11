@@ -22,7 +22,7 @@ class Engine:
     def __init__(self, player: Entity, message_console: Console):
         self.event_handler: EventHandler = EventHandler(self)
         self.player = player
-        self.message_log = MessageLog(0, 0, 4)
+        self.message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
         self.message_console = message_console
 
     def handle_enemy_turns(self) -> None:

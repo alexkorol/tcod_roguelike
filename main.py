@@ -45,7 +45,7 @@ def main() -> None:
     ) as context:
         root_console = tcod.Console(screen_width, screen_height + message_console_height, order="F")
 
-        message_log = MessageLog()
+        message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
         if isinstance(player, Entity) and isinstance(message_console, Console):
             engine = Engine(player=player, message_console=message_console, message_log=message_log)
         else:

@@ -1,5 +1,6 @@
 import tcod
 from tcod.console import Console
+from message_log import MessageLog
 
 def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
     bar_width = int(float(current_value) / maximum_value * total_width)

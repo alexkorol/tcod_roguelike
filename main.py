@@ -77,6 +77,7 @@ def render_bar(console: tcod.Console, current_value: int, maximum_value: int, to
     )
 
 def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, messages: List[str]) -> None:
+    print("render_gui called")
     render_bar(console, current_value, maximum_value, total_width)
     y = console.height - 2
     for message in messages:

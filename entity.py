@@ -66,7 +66,7 @@ class Entity:
         self.y += dy
 
     
-from components.inventory import Inventory
+# Removed unnecessary import
 
 class Actor(Entity):
     def __init__(

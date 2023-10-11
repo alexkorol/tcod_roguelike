@@ -88,3 +88,22 @@ def render_gui(console: tcod.Console, current_value: int, maximum_value: int, to
 
 if __name__ == "__main__":
     main()
+class HistoryViewer:
+    def __init__(self, engine):
+        self.engine = engine
+        self.index = 0
+
+    def handle_events(self):
+        key = tcod.console_wait_for_keypress(True)
+        if key.vk == tcod.KEY_UP:
+            self.index = max(0, self.index - 1)
+        elif key.vk == tcod.KEY_DOWN:
+            self.index = min(len(self.engine.message_log.messages) - 1, self.index + 1)
+        elif key.vk == tcod.KEY_ESCAPE:
+            self.engine.event_handler = MainGameEventHandler(self.engine)
+
+    def render(self, console):
+        console.clear()
+        for i, message in enumerate(self.engine.message_log.messages):
+            color = (255, 255, 255) if i == self.index else (200, 200, 200)
+            console.print(0, i, message.text, fg=color)

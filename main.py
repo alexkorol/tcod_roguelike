@@ -1,6 +1,6 @@
 #!/usrin/env python3
 import copy
-from typing import List
+from typing import List, Iterable
 from tcod.console import Console as Console
 from message_log import MessageLog
 

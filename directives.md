@@ -1,31 +1,19 @@
- It looks like the main issue is that the message console is not being blitted to the root console correctly. Here are a few things to try:
+Here is a summary of the key steps to add a console readout box for game messages:
 
-1. In render_messages(), make sure to specify the y position when blitting:
+Create a MessageLog class to store messages and a Message class to represent each message.
 
-```python
-console.blit(message_console, 0, console.height - message_console.height)
-```
+Create a console specifically for rendering messages (message_console). Set its size and order.
 
-2. In main.py, make sure the root console height accounts for the message console height:  
+When creating the Engine, pass the message_console to it.
 
-```python
-root_console = tcod.Console(screen_width, screen_height + message_console_height)
-```
+In the Engine's render method, render the main display, then render the message log to the message console using the render_messages function.
 
-3. In main.py render_gui(), subtract the message console height when printing the messages:
+Blit the message console to the root console after rendering the main display. Make sure to account for the message console height in the root console height.
 
-```python 
-y = console.height - message_console_height - 2
-```
+Throughout the game logic, instead of printing, add messages to the Engine's message log using message_log.add_message().
 
-4. Make sure the message console height is not 0.
+Make sure to clear both the root console and message console each frame.
 
-5. Call engine.render() before render_gui() so the main console is drawn first.
+To view past messages, create a HistoryViewer input handler that renders the full message log and allows scrolling through it.
 
-6. Try setting the message console background color to distinguish it:
-
-```python
-message_console = tcod.Console(screen_width, message_console_height, order="F", bg=(50, 50, 50))
-```
-
-Let me know if any of those help or if you're still seeing issues!
+The key is passing the message console to the Engine, rendering messages to it each frame, allocating space on the root console to blit it, and using the message log to record messages. Let me know if you have any other questions!

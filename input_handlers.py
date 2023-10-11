@@ -74,16 +74,6 @@ class InventoryActivateHandler(InventoryEventHandler):
         """Show the inventory menu for item activation."""
         self.engine.message_log.add_message("Select an item to use it.", tcod.yellow)
 
-    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
-        player = self.engine.player
-        key = event.sym
-        index = key - tcod.event.K_a
-
-        if 0 <= index < len(player.inventory.items):
-            item = player.inventory.items[index]
-
-            # Return the action for the selected item
-            return item.consumable.get_action(player)
 
 
 class InventoryDropHandler(InventoryEventHandler):

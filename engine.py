@@ -17,11 +17,13 @@ if TYPE_CHECKING:
 class Engine:
     game_map: GameMap
     message_log: MessageLog
-    
+    message_console: Console
+
     def __init__(self, player: Entity):
         self.event_handler: EventHandler = EventHandler(self)
         self.player = player
         self.message_log = MessageLog(0, 0, 4)
+        self.message_console = None
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:

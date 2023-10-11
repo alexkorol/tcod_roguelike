@@ -4,6 +4,9 @@ from entity import Actor
 from components.inventory import Inventory
 from components.render_order import RenderOrder
 
+# Define health_potion here
+health_potion = None  # Replace None with the actual definition
+
 player = Actor(
     char="@",
     color=(255, 255, 255),

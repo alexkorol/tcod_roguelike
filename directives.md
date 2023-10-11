@@ -1,19 +1,37 @@
-Here is a summary of the key steps to add a console readout box for game messages:
+ There are a few key differences between the tutorial code and yours:
 
-Create a MessageLog class to store messages and a Message class to represent each message.
+1. The tutorial creates the message log and passes it to the Engine on initialization:
 
-Create a console specifically for rendering messages (message_console). Set its size and order.
+```python
+engine = Engine(player=player)
+engine.message_log = MessageLog()
+```
 
-When creating the Engine, pass the message_console to it.
+In your code, you are not passing the message log to the Engine.
 
-In the Engine's render method, render the main display, then render the message log to the message console using the render_messages function.
+2. The tutorial renders the message log in the Engine's render method:
 
-Blit the message console to the root console after rendering the main display. Make sure to account for the message console height in the root console height.
+```python
+self.message_log.render(console=console, x=21, y=45, width=40, height=5)
+``` 
 
-Throughout the game logic, instead of printing, add messages to the Engine's message log using message_log.add_message().
+Your render function is not rendering the message log.
 
-Make sure to clear both the root console and message console each frame.
+3. The tutorial accounts for the message log height in the root console height:
 
-To view past messages, create a HistoryViewer input handler that renders the full message log and allows scrolling through it.
+```python
+screen_height = 50 
+```
 
-The key is passing the message console to the Engine, rendering messages to it each frame, allocating space on the root console to blit it, and using the message log to record messages. Let me know if you have any other questions!
+Your root console height does not account for the message console height.
+
+4. The tutorial calls engine.render() before rendering the GUI/HUD elements. Your code calls render_gui() first.
+
+So in summary, the key fixes:
+
+- Pass the message log to the Engine on initialization 
+- Render the message log in the Engine's render method
+- Adjust the root console height for the message console
+- Call engine.render() before rendering GUI elements
+
+This should get the message log rendering correctly! Let me know if you have any other questions.

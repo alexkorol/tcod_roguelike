@@ -41,6 +41,7 @@ class Engine:
     def render(self, console: Console, context: Context) -> None:
         self.game_map.render(console)
         render_bar(console, self.player.fighter.hp, self.player.fighter.max_hp, 20)
+        render_messages(console, 0, console.height - len(self.message_log.get_messages()), self.message_log)
 
         context.present(console)
 

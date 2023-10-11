@@ -4,10 +4,14 @@ from entity import Actor
 from components.inventory import Inventory
 from components.render_order import RenderOrder
 
-# Define health_potion here
-# Replace None with the actual definition of health_potion
-# For example, if health_potion is an instance of a class Item, it might look something like this:
-# health_potion = Item(...)
+from components.consumable import Consumable
+
+health_potion = Item(
+    char="!",
+    color=(127, 0, 255),
+    name="Health Potion",
+    consumable=Consumable(healing_amount=4),
+)
 
 player = Actor(
     char="@",

@@ -10,7 +10,7 @@ health_potion = Item(
     char="!",
     color=(127, 0, 255),
     name="Health Potion",
-    consumable=Consumable(healing_amount=4),
+    consumable=HealingConsumable(healing_amount=4),
 )
 
 player = Actor(

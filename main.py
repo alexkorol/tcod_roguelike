@@ -32,7 +32,7 @@ def main() -> None:
 
     player = copy.deepcopy(entity_factories.player)
 
-    message_console_height = max(5, 1)  # Ensure message_console_height is not 0
+    message_console_height = 5
     message_console = tcod.Console(screen_width, message_console_height, order="F")
     message_console.default_bg = (50, 50, 50)
 

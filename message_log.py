@@ -16,6 +16,15 @@ class MessageLog:
         self.width = width
         self.height = height
 
+    def render(self, console: Console, x: int, y: int, width: int, height: int) -> None:
+        """
+        Render the message log using the provided console, starting at position (x, y).
+        """
+        self.messages = self.messages[-height:]
+
+        for i, message in enumerate(self.messages):
+            console.print(x, y + i, message.text, fg=message.fg)
+
     def add_message(self, message: Message) -> None:
         # Add a message if there is room or remove the first message
         width = max(1, self.width)  # Ensure width is always > 0

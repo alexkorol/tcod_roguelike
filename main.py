@@ -77,7 +77,7 @@ def main() -> None:
     # ... existing code ...
 
     while True:
-        engine.render(console=root_console, context=context)
+        Engine.render(console=root_console, context=context)
         render_gui(root_console, engine.messages)
         engine.event_handler.handle_events()
 

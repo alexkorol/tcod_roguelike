@@ -30,3 +30,6 @@ class MessageLog:
 
     def get_messages(self) -> List[Message]:
         return self.messages
+
+    def __iter__(self):
+        return iter(self.messages)

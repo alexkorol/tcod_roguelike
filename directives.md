@@ -16,7 +16,7 @@ Replace 'tcod.Console' with 'tcod.console.Console'
 Traceback (most recent call last):
   File "C:\Users\16178\Documents\Code\tcod_roguelike\main.py", line 90, in <module>
     main()
-  File "C:\Users\16178\Documents\Code\tcod_roguelike\main.py", line 48, in main
-    message_log = MessageLog()
-                  ^^^^^^^^^^^^
-TypeError: MessageLog.__init__() missing 3 required positional arguments: 'x', 'width', and 'height'
+  File "C:\Users\16178\Documents\Code\tcod_roguelike\main.py", line 50, in main
+    engine = Engine(player=player, message_console=message_console, message_log=message_log)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Engine.__init__() got an unexpected keyword argument 'message_log'

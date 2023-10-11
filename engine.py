@@ -40,10 +40,10 @@ class Engine:
         # If a tile is "visible" it should be added to "explored".
         self.game_map.explored |= self.game_map.visible
 
-    def render(self, console: Console, context: Context, n: int) -> None:
+    def render(self, console: Console, context: Context) -> None:
         self.game_map.render(console)
         render_bar(console, self.player.fighter.hp, self.player.fighter.max_hp, 20)
-        render_messages(console, 0, console.height - n, self.message_log, n)
+        render_messages(console, self.message_log, self.message_console)
 
         context.present(console)
 

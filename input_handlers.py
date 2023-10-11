@@ -6,8 +6,7 @@ from typing import Optional, TYPE_CHECKING
 import tcod.event
 
 from actions import Action, BumpAction, EscapeAction, WaitAction
-from engine import EventHandler
-from main_game_event_handler import MainGameEventHandler
+from main_game_event_handler import MainGameEventHandler, EventHandler
 
 if TYPE_CHECKING:
     from typing import TYPE_CHECKING

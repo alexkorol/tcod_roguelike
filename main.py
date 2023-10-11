@@ -52,7 +52,7 @@ def main() -> None:
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
         while True:
-            Engine.render(console=root_console, context=context)
+            engine.render(console=root_console, context=context)
             render_messages(root_console, engine.messages)
             engine.event_handler.handle_events()
             

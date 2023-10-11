@@ -65,6 +65,8 @@ class Entity:
         self.y += dy
 
     
+from components.inventory import Inventory
+
 class Actor(Entity):
     def __init__(
         self,
@@ -76,6 +78,7 @@ class Actor(Entity):
         name: str = "<Unnamed>",
         ai_cls: Type[BaseAI],
         fighter: Fighter,
+        inventory: Inventory,
         render_order: RenderOrder
     ):
         super().__init__(
@@ -90,6 +93,8 @@ class Actor(Entity):
         self.ai: Optional[BaseAI] = ai_cls(self)
         self.fighter = fighter
         self.fighter.entity = self
+        self.inventory = inventory
+        self.inventory.entity = self
         self.render_order = render_order
         
     @property

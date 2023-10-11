@@ -1,4 +1,5 @@
 from typing import Tuple, List
+from tcod.console import Console
 import textwrap
 
 class Message:

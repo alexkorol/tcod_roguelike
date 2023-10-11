@@ -11,7 +11,7 @@ from components.render_order import RenderOrder
 
 def main() -> None:
     screen_width = 80
-    screen_height = 50
+    screen_height = 60
     
     map_width = 80
     map_height = 45
@@ -54,5 +54,22 @@ def main() -> None:
             engine.render(console=root_console, context=context)
             engine.event_handler.handle_events()
             
+def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
+    bar_width = int(float(current_value) / maximum_value * total_width)
+
+    console.draw_rect(1, 1, total_width, 1, 0, bg=(255, 0, 0))
+    if bar_width > 0:
+        console.draw_rect(1, 1, bar_width, 1, 0, bg=(0, 255, 0))
+
+    console.print(
+        int(total_width / 2), 1, f"HP: {current_value}/{maximum_value}", fg=(255, 255, 255), alignment=tcod.CENTER
+    )
+
+def render_messages(console: tcod.Console, messages: List[str]) -> None:
+    y = console.height - 2
+    for message in messages:
+        console.print(console.width - 2, y, message, fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
+        y -= 1
+
 if __name__ == "__main__":
     main()

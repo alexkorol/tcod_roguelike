@@ -1,3 +1,6 @@
+from typing import Tuple
+import textwrap
+
 class Message:
     def __init__(self, text: str, fg: Tuple[int, int, int]):
         self.text = text

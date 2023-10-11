@@ -34,7 +34,7 @@ def main() -> None:
 
     message_console_height = 5
     message_console = tcod.console.Console(screen_width, message_console_height, order="F")
-    message_console.bg.fill(50, 50, 50)
+    message_console.clear(fg=(255, 255, 255), bg=(50, 50, 50))
 
     with tcod.context.new_terminal(
         screen_width,

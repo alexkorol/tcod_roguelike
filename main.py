@@ -11,6 +11,7 @@ import entity_factories
 from procgen import generate_dungeon
 from components.render_order import RenderOrder
 from entity import Entity
+from components.inventory import Inventory
 
 
 def main() -> None:

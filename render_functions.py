@@ -1,7 +1,6 @@
 import tcod
 from tcod.console import Console as Console
 from message_log import MessageLog
-from message_log import MessageLog
 def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
     bar_width = int(float(current_value) / maximum_value * total_width)
 
@@ -17,9 +16,9 @@ def render_bar(console: tcod.Console, current_value: int, maximum_value: int, to
         int(total_width / 2), 1, f"HP: {current_value}/{maximum_value}", fg=(255, 255, 255), alignment=tcod.CENTER
     )
 
-def render_messages(console: Console, message_log: MessageLog, message_console: Console) -> None:
-    message_console.clear()
-    messages_to_render = message_log.get_last_messages(message_console.height)
+def render_messages(console: Console, message_log: MessageLog) -> None:
+    console.clear()
+    messages_to_render = message_log.get_last_messages(console.height)
     for i, message in enumerate(messages_to_render):
-        message_console.print(0, i, str(message), fg=message.fg)
-    console.blit(message_console, 0, console.height - message_console.height, 0, 0, message_console.width, message_console.height)
+        console.print(0, i, str(message), fg=message.fg)
+    console.blit(console, 0, console.height - console.height, 0, 0, console.width, console.height)

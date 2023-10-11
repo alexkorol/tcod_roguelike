@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 from message_log import MessageLog, Message
 
 from tcod.context import Context
-from tcod.console import Console
+from tcod.console import Console as Console
 from tcod.map import compute_fov
 
 from input_handlers import EventHandler

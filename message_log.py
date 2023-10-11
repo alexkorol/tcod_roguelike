@@ -1,0 +1,23 @@
+class Message:
+    def __init__(self, text: str, fg: Tuple[int, int, int]):
+        self.text = text
+        self.fg = fg
+
+class MessageLog:
+    def __init__(self, x: int, width: int, height: int):
+        self.messages = []
+        self.x = x
+        self.width = width
+        self.height = height
+
+    def add_message(self, message: Message) -> None:
+        # Add a message if there is room or remove the first message
+        new_msg_lines = textwrap.wrap(message.text, self.width)
+
+        for line in new_msg_lines:
+            # If the buffer is full, remove the first line to make room for the new one
+            if len(self.messages) == self.height:
+                del self.messages[0]
+
+            # Add the new line as a Message object, with the text and the color
+            self.messages.append(Message(line, message.fg))

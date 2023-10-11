@@ -81,7 +81,7 @@ def render_gui(console: tcod.Console, current_value: int, maximum_value: int, to
     y = console.height - message_console_height - 2
     if isinstance(message_log, MessageLog):
         for message in message_log.messages:
-            console.print(console.width - 2, y, str(message), fg=(255, 255, 255), bg=(0, 0, 0), alignment=libtcodpy.RIGHT)
+            console.print(console.width - 2, y, str(message), fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
             y -= 1
     else:
         raise TypeError("message_log must be an instance of MessageLog.")

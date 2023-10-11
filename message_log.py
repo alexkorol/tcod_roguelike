@@ -31,5 +31,8 @@ class MessageLog:
     def get_messages(self) -> List[Message]:
         return self.messages
 
+    def get_last_messages(self, n: int) -> List[Message]:
+        return self.messages[-n:]
+
     def __iter__(self):
         return iter(self.messages)

@@ -31,6 +31,7 @@ def main() -> None:
     )
 
     player = copy.deepcopy(entity_factories.player)
+    player.inventory = Inventory(26)  # Giving the player an inventory with a capacity of 26
 
     message_console_height = 5
     message_console = tcod.console.Console(screen_width, message_console_height, order="F")

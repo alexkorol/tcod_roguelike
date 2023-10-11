@@ -53,6 +53,7 @@ def main() -> None:
         else:
             raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
 
+        max_items_per_room = 2
         engine.game_map = generate_dungeon(
             max_rooms=max_rooms,
             room_min_size=room_min_size,

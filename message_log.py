@@ -18,7 +18,8 @@ class MessageLog:
 
     def add_message(self, message: Message) -> None:
         # Add a message if there is room or remove the first message
-        new_msg_lines = textwrap.wrap(message.text, self.width)
+        width = max(1, self.width)  # Ensure width is always > 0
+        new_msg_lines = textwrap.wrap(message.text, width)
 
         for line in new_msg_lines:
             # If the buffer is full, remove the first line to make room for the new one

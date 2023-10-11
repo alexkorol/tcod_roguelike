@@ -28,8 +28,8 @@ class MessageLog:
             # Add the new line as a Message object, with the text and the color
             self.messages.append(Message(line, message.fg))
 
-    def get_messages(self) -> List[Message]:
-        return self.messages
+    def get_last_messages(self, n: int) -> List[Message]:
+        return self.messages[-n:]
 
     def get_last_messages(self, n: int) -> List[Message]:
         return self.messages[-n:]

@@ -76,7 +76,8 @@ def render_bar(console: tcod.Console, current_value: int, maximum_value: int, to
         int(total_width / 2), 1, f"HP: {current_value}/{maximum_value}", fg=(255, 255, 255), alignment=tcod.CENTER
     )
 
-def render_gui(console: tcod.Console, messages: List[str]) -> None:
+def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
+    render_bar(console, current_value, maximum_value, total_width)
     y = console.height - 2
     for message in messages:
         console.print(console.width - 2, y, message, fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)

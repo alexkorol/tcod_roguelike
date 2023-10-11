@@ -6,10 +6,11 @@ from typing import TYPE_CHECKING
 import tcod.event
 
 from actions import Action, BumpAction, EscapeAction, WaitAction
-from engine import EventHandler
 
 if TYPE_CHECKING:
-    from engine import Engine
+    from engine import Engine, EventHandler
+else:
+    EventHandler = 'EventHandler'
 
 class MainGameEventHandler(EventHandler):
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:

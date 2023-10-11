@@ -45,8 +45,9 @@ def main() -> None:
     ) as context:
         root_console = tcod.Console(screen_width, screen_height + message_console_height, order="F")
 
+        message_log = MessageLog()
         if isinstance(player, Entity) and isinstance(message_console, Console):
-            engine = Engine(player=player, message_console=message_console)
+            engine = Engine(player=player, message_console=message_console, message_log=message_log)
         else:
             raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
 

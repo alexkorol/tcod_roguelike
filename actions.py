@@ -126,3 +126,11 @@ class BumpAction(ActionWithDirection):
 
         else:
             return MovementAction(self.entity, self.dx, self.dy).perform()
+class InventoryAction(Action):
+    def __init__(self, entity: Actor, item: Item):
+        super().__init__(entity)
+        self.item = item
+
+    def perform(self) -> None:
+        """Invoke the item's ability, this action will be given to the item's ability to perform."""
+        self.item.ability.perform()

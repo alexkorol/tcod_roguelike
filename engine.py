@@ -7,6 +7,7 @@ from tcod.console import Console
 from tcod.map import compute_fov
 
 from input_handlers import EventHandler
+from render_functions import render_bar
 
 if TYPE_CHECKING:
     from entity import Entity
@@ -38,6 +39,7 @@ class Engine:
 
     def render(self, console: Console, context: Context) -> None:
         self.game_map.render(console)
+        render_bar(console, self.player.fighter.hp, self.player.fighter.max_hp, 20)
 
         context.present(console)
 

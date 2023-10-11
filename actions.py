@@ -6,7 +6,7 @@ from message_log import Message
 
 if TYPE_CHECKING:
     from engine import Engine
-    from entity import Actor, Entity
+    from entity import Actor, Entity, Item
 
 class Action:
     def __init__(self, entity: Actor):

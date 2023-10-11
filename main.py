@@ -1,6 +1,7 @@
 #!/usrin/env python3
 import copy
 from typing import List
+from tcod.console import Console
 
 import tcod
 

@@ -1,22 +1,31 @@
-C:\Users\16178\Documents\Code\tcod_roguelike>python main.py
-C:\Users\16178\Documents\Code\tcod_roguelike\render_functions.py:4: FutureWarning: tcod.Console is deprecated.
-Replace 'tcod.Console' with 'tcod.console.Console'
-  def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
-C:\Users\16178\Documents\Code\tcod_roguelike\main.py:75: FutureWarning: tcod.Console is deprecated.
-Replace 'tcod.Console' with 'tcod.console.Console'
-  def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, message_log: MessageLog, message_console_height: int) -> None:
-C:\Users\16178\Documents\Code\tcod_roguelike\main.py:36: FutureWarning: tcod.Console is deprecated.
-Replace 'tcod.Console' with 'tcod.console.Console'
-  message_console = tcod.Console(screen_width, message_console_height, order="F")
-C:\Users\16178\Documents\Code\tcod_roguelike\main.py:37: FutureWarning: Console defaults have been deprecated.
-  message_console.default_bg = (50, 50, 50)
-C:\Users\16178\Documents\Code\tcod_roguelike\main.py:46: FutureWarning: tcod.Console is deprecated.
-Replace 'tcod.Console' with 'tcod.console.Console'
-  root_console = tcod.Console(screen_width, screen_height + message_console_height, order="F")
-Traceback (most recent call last):
-  File "C:\Users\16178\Documents\Code\tcod_roguelike\main.py", line 90, in <module>
-    main()
-  File "C:\Users\16178\Documents\Code\tcod_roguelike\main.py", line 50, in main
-    engine = Engine(player=player, message_console=message_console, message_log=message_log)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: Engine.__init__() got an unexpected keyword argument 'message_log'
+Here is a summary of the key steps to add items and an inventory system:
+
+Create an Item class that inherits from Entity to represent items. Give it a Consumable component.
+
+Create Consumable and HealingConsumable classes to define item behaviors.
+
+Add an Inventory component that contains items. Give this to the Player.
+
+Generate items in the dungeon using place_entities().
+
+Create a PickupAction to add items to inventory.
+
+Create DropItem action to drop items.
+
+Create InventoryEventHandler to display inventory.
+
+Create InventoryActivateHandler and InventoryDropHandler subclasses to handle using and dropping items.
+
+Add keybindings to open the inventory and drop menus.
+
+Call Consumable's consume() method when an item is used to remove it from the inventory.
+
+Handle Impossible exceptions to prevent errors like using items at full health.
+
+The key steps are:
+
+Creating Item/Consumable classes
+Giving Player an Inventory
+Defining actions to pick up and drop items
+Creating inventory menu handlers
+Removing used items from the inventory

@@ -2,7 +2,7 @@
 
 2. In the `render_functions.py` file, the import statement for the `MessageLog` class is missing.
 
-3. In the `procedural_generation.py` file, the import statement for the `Engine` class is missing.
+3. In the `progen.py` file, the import statement for the `Engine` class is missing.
 
 4. In the `render_functions.py` file, the `render_messages` function takes four arguments, but when it is called in the `Engine` class in `engine.py`, it only passes two arguments. This may result in a TypeError.
 

@@ -45,15 +45,18 @@ def main() -> None:
 
     engine.update_fov()
 
+    message_console_height = 5
     with tcod.context.new_terminal(
         screen_width,
-        screen_height,
+        screen_height + message_console_height,
         tileset=tileset,
         title="Alexei's Roguelike",
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
+        message_console = tcod.Console(screen_width, message_console_height, order="F")
         root_console.clear()
+        message_console.clear()
 
         while True:
             engine.render(console=root_console, context=context, n=4)

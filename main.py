@@ -57,7 +57,7 @@ def main() -> None:
             message_console = Console(console.width, len(message_log.get_messages()))
             message_console.draw_frame(0, 0, message_console.width, message_console.height)
             for i, message in enumerate(message_log.get_messages()):
-                message_console.print(0, i, str(message))
+                message_console.print(0, i, str(message), fg=message.fg)
             console.blit(message_console, x, y)
 
         while True:

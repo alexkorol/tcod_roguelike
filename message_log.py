@@ -6,6 +6,9 @@ class Message:
         self.text = text
         self.fg = fg
 
+    def __str__(self) -> str:
+        return self.text
+
 class MessageLog:
     def __init__(self, x: int, width: int, height: int):
         self.messages = []
@@ -24,3 +27,6 @@ class MessageLog:
 
             # Add the new line as a Message object, with the text and the color
             self.messages.append(Message(line, message.fg))
+
+    def get_messages(self) -> List[Message]:
+        return self.messages

@@ -10,6 +10,7 @@ from engine import Engine
 import entity_factories
 from procgen import generate_dungeon
 from components.render_order import RenderOrder
+from entity import Entity
 
 
 def main() -> None:

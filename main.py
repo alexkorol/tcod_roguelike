@@ -70,19 +70,19 @@ def main() -> None:
             
 from render_functions import render_bar, render_messages
 
-def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, messages: Iterable[Message]) -> None:
+def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, message_log: MessageLog) -> None:
     print("render_gui called")
     if isinstance(console, Console) and isinstance(current_value, int) and isinstance(maximum_value, int) and isinstance(total_width, int):
         render_bar(console, current_value, maximum_value, total_width)
     else:
         raise TypeError("Console must be an instance of Console, and current_value, maximum_value, and total_width must be integers.")
     y = console.height - 2
-    if isinstance(messages, Iterable) and all(isinstance(message, Message) for message in messages):
-        for message in messages:
+    if isinstance(message_log, MessageLog):
+        for message in message_log.messages:
             console.print(console.width - 2, y, str(message), fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
             y -= 1
     else:
-        raise TypeError("Messages must be iterable and each message must be a Message.")
+        raise TypeError("message_log must be an instance of MessageLog.")
 
 if __name__ == "__main__":
     main()

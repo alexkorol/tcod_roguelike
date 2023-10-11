@@ -137,6 +137,24 @@ class Item(Entity):
         gamemap.entities.add(clone)
         return clone
 
+class Consumable:
+    def consume(self):
+        # Implement consume logic here
+        pass
+
+class HealingConsumable(Consumable):
+    def __init__(self, healing_amount: int):
+        super().__init__()
+        self.healing_amount = healing_amount
+
+    def activate(self):
+        # Implement activation logic here
+        pass
+
+    def get_action(self):
+        # Implement get_action logic here
+        pass
+
 class Inventory:
     def __init__(self, capacity: int):
         self.capacity = capacity

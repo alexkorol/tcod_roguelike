@@ -1,7 +1,7 @@
 #!/usrin/env python3
 import copy
 from typing import List, Iterable
-from tcod.console import Console as Console
+from tcod.console import Console
 from message_log import MessageLog
 
 import tcod
@@ -33,8 +33,8 @@ def main() -> None:
     player = copy.deepcopy(entity_factories.player)
 
     message_console_height = 5
-    message_console = tcod.Console(screen_width, message_console_height, order="F")
-    message_console.default_bg = (50, 50, 50)
+    message_console = tcod.console.Console(screen_width, message_console_height, order="F")
+    message_console.bg = (50, 50, 50)
 
     with tcod.context.new_terminal(
         screen_width,
@@ -43,7 +43,7 @@ def main() -> None:
         title="Alexei's Roguelike",
         vsync=True,
     ) as context:
-        root_console = tcod.Console(screen_width, screen_height + message_console_height, order="F")
+        root_console = tcod.console.Console(screen_width, screen_height + message_console_height, order="F")
 
         message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
         if isinstance(player, Entity) and isinstance(message_console, Console):

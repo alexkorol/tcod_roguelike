@@ -8,7 +8,7 @@ from actions import Action, BumpAction, EscapeAction, WaitAction
 from engine import EventHandler
 
 if TYPE_CHECKING:
-    from engine import Engine
+    Engine = 'engine.Engine'
 
 
 MOVE_KEYS = {

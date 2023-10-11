@@ -6,6 +6,7 @@ from typing import Optional, Tuple, Type, TypeVar, TYPE_CHECKING
 if TYPE_CHECKING:
     from components.ai import BaseAI
     from components.fighter import Fighter
+    from components.consumable import Consumable
     from game_map import GameMap
 
 T = TypeVar("T", bound="Entity")

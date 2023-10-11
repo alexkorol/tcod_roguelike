@@ -73,7 +73,7 @@ def main() -> None:
 from render_functions import render_bar, render_messages
 
 def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, message_log: MessageLog, message_console_height: int) -> None:
-    engine.message_log.add_message(Message("render_gui called", (255, 255, 255)))
+    # No operation
     if isinstance(console, Console) and isinstance(current_value, int) and isinstance(maximum_value, int) and isinstance(total_width, int):
         render_bar(console, current_value, maximum_value, total_width)
     else:

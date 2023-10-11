@@ -127,3 +127,12 @@ class Item(Entity):
 
         self.consumable = consumable
         self.consumable.entity = self
+
+    def spawn(self, gamemap: GameMap, x: int, y: int) -> "Item":
+        """Spawn a copy of this instance at the given location."""
+        clone = copy.deepcopy(self)
+        clone.x = x
+        clone.y = y
+        clone.gamemap = gamemap
+        gamemap.entities.add(clone)
+        return clone

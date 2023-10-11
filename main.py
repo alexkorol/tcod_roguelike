@@ -32,6 +32,8 @@ def main() -> None:
     player = copy.deepcopy(entity_factories.player)
 
     message_console_height = 5
+    message_console = tcod.Console(screen_width, message_console_height, order="F")
+
     with tcod.context.new_terminal(
         screen_width,
         screen_height + message_console_height,
@@ -40,7 +42,6 @@ def main() -> None:
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
-        message_console = tcod.Console(screen_width, message_console_height, order="F")
 
     engine = Engine(player=player, message_console=message_console)
 

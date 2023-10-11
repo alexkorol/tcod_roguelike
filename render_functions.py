@@ -23,8 +23,3 @@ def render_messages(console: Console, x: int, y: int, message_log: MessageLog, n
     for i, message in enumerate(messages_to_render):
         message_console.print(0, i, str(message), fg=message.fg)
     console.blit(message_console, x, y)
-    message_console = Console(console.width, len(messages_to_render))
-    message_console.draw_frame(0, 0, message_console.width, message_console.height)
-    for i, message in enumerate(messages_to_render):
-        message_console.print(0, i, str(message), fg=message.fg)
-    console.blit(message_console, x, y)

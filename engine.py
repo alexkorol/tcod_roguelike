@@ -7,12 +7,8 @@ from tcod.context import Context
 from tcod.console import Console as Console
 from tcod.map import compute_fov
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from input_handlers import MainGameEventHandler
-else:
-    MainGameEventHandler = 'MainGameEventHandler'
+# Always import MainGameEventHandler directly
+from input_handlers import MainGameEventHandler
 from render_functions import render_bar, render_messages
 
 if TYPE_CHECKING:

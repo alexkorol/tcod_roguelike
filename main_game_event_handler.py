@@ -31,8 +31,9 @@ class MainGameEventHandler(EventHandler):
         elif key in WAIT_KEYS:
             action = WaitAction(player)
 
-        elif key == tcod.event.KeySym.ESCAPE:
-            action = EscapeAction(player)
+        elif key == tcod.event.K_i:
+            # Inventory actions
+            action = InventoryAction(player)
 
         # No valid key pressed
         return action

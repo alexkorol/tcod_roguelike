@@ -70,7 +70,7 @@ def main() -> None:
             
 from render_functions import render_bar, render_messages
 
-def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, messages: List[str]) -> None:
+def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, messages: Iterable[str]) -> None:
     print("render_gui called")
     if isinstance(console, Console) and isinstance(current_value, int) and isinstance(maximum_value, int) and isinstance(total_width, int):
         render_bar(console, current_value, maximum_value, total_width)

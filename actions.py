@@ -72,10 +72,10 @@ class MeleeAction(ActionWithDirection):
 
         attack_desc = f"{self.entity.name.capitalize()} attacks {target.name}"
         if damage > 0:
-            print(f"{attack_desc} for {damage} hit points")
+            self.engine.message_log.add_message(Message(f"{attack_desc} for {damage} hit points", (255, 255, 255)))
             target.fighter.hp -= damage
         else:
-            print(f"{attack_desc} but does no damage.")
+            self.engine.message_log.add_message(Message(f"{attack_desc} but does no damage.", (255, 255, 255)))
 
 class MovementAction(ActionWithDirection):
     

@@ -15,7 +15,7 @@ from entity import Entity
 
 def main() -> None:
     screen_width = 80
-    screen_height = 60
+    screen_height = 50
     
     map_width = 80
     map_height = 45

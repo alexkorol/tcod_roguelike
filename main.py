@@ -32,8 +32,8 @@ def main() -> None:
 
     player = copy.deepcopy(entity_factories.player)
 
-    message_console_height = 5
-    message_console = tcod.Console(screen_width, message_console_height, order="F")
+    message_console_height = max(5, 1)  # Ensure message_console_height is not 0
+    message_console = tcod.Console(screen_width, message_console_height, order="F", bg=(50, 50, 50))
 
     with tcod.context.new_terminal(
         screen_width,
@@ -42,7 +42,7 @@ def main() -> None:
         title="Alexei's Roguelike",
         vsync=True,
     ) as context:
-        root_console = tcod.Console(screen_width, screen_height, order="F")
+        root_console = tcod.Console(screen_width, screen_height + message_console_height, order="F")
 
         if isinstance(player, Entity) and isinstance(message_console, Console):
             engine = Engine(player=player, message_console=message_console)
@@ -64,8 +64,8 @@ def main() -> None:
         message_console.clear()
 
         while True:
-            engine.render(console=root_console, context=context)
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
+            engine.render(console=root_console, context=context)
             engine.event_handler.handle_events()
             
 from render_functions import render_bar, render_messages
@@ -76,7 +76,7 @@ def render_gui(console: tcod.Console, current_value: int, maximum_value: int, to
         render_bar(console, current_value, maximum_value, total_width)
     else:
         raise TypeError("Console must be an instance of Console, and current_value, maximum_value, and total_width must be integers.")
-    y = console.height - 2
+    y = console.height - message_console_height - 2
     if isinstance(message_log, MessageLog):
         for message in message_log.messages:
             console.print(console.width - 2, y, str(message), fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)

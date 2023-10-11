@@ -21,4 +21,4 @@ def render_messages(console: Console, message_log: MessageLog, message_console: 
     messages_to_render = message_log.get_last_messages(message_console.height)
     for i, message in enumerate(messages_to_render):
         message_console.print(0, i, str(message), fg=message.fg)
-    console.blit(message_console, 0, console.height - message_console.height)
+    console.blit(message_console, 0, console.height - message_console.height, 0, 0, message_console.width, message_console.height)

@@ -7,7 +7,7 @@ from tcod.context import Context
 from tcod.console import Console as Console
 from tcod.map import compute_fov
 
-EventHandler = 'input_handlers.EventHandler'
+from input_handlers import MainGameEventHandler
 from render_functions import render_bar, render_messages
 
 if TYPE_CHECKING:
@@ -20,7 +20,7 @@ class Engine:
     message_console: Console
 
     def __init__(self, player: Entity, message_console: Console, message_log: MessageLog):
-        self.event_handler: EventHandler = EventHandler(self)
+        self.event_handler: MainGameEventHandler = MainGameEventHandler(self)
         self.player = player
         self.message_log = message_log
         self.message_console = message_console

@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 
     if TYPE_CHECKING:
         # Removed import of Engine
+        pass
     else:
         Engine = 'Engine'
 

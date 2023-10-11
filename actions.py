@@ -133,4 +133,7 @@ class InventoryAction(Action):
 
     def perform(self) -> None:
         """Invoke the item's ability, this action will be given to the item's ability to perform."""
-        self.item.ability.perform()
+        try:
+            self.item.ability.perform()
+        except Exception as e:
+            print(f"Error: {e}")

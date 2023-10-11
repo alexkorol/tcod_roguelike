@@ -1,3 +1,4 @@
+# Updated import of MainGameEventHandler
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -7,8 +8,7 @@ from tcod.context import Context
 from tcod.console import Console as Console
 from tcod.map import compute_fov
 
-# Always import MainGameEventHandler directly
-from input_handlers import MainGameEventHandler
+from main_game_event_handler import MainGameEventHandler
 from render_functions import render_bar, render_messages
 
 if TYPE_CHECKING:

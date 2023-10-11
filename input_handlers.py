@@ -1,3 +1,4 @@
+# Removed MainGameEventHandler class and updated import
 from __future__ import annotations
 
 from typing import Optional, TYPE_CHECKING
@@ -6,6 +7,7 @@ import tcod.event
 
 from actions import Action, BumpAction, EscapeAction, WaitAction
 from engine import EventHandler
+from main_game_event_handler import MainGameEventHandler
 
 if TYPE_CHECKING:
     from typing import TYPE_CHECKING

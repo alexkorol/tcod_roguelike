@@ -94,6 +94,20 @@ class InventoryDropHandler(InventoryEventHandler):
             # Return the action to drop the selected item
             return DropItem(player, item)
 
+        action: Optional[Action] = None
+
+        if key in MOVE_KEYS:
+            dx, dy = MOVE_KEYS[key]
+            action = BumpAction(player, dx, dy)
+        elif key in WAIT_KEYS:
+            action = WaitAction(player)
+
+        elif key == tcod.event.KeySym.ESCAPE:
+            action = EscapeAction(player)
+
+        # No valid key pressed
+        return action
+
 
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:

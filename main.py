@@ -72,7 +72,7 @@ def main() -> None:
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log, message_console_height)
             engine.event_handler.handle_events()
             
-from render_functions import render_bar, render_messages
+from render_functions import render_bar
 
 def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, message_log: MessageLog, message_console_height: int) -> None:
     # No operation

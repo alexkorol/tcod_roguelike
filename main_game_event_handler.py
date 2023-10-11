@@ -8,9 +8,11 @@ import tcod.event
 from actions import Action, BumpAction, EscapeAction, WaitAction
 
 if TYPE_CHECKING:
-    from engine import Engine, EventHandler
-else:
-    EventHandler = 'EventHandler'
+    from engine import Engine
+
+class EventHandler:
+    def handle_events(self):
+        raise NotImplementedError()
 
 class MainGameEventHandler(EventHandler):
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:

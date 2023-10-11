@@ -53,12 +53,6 @@ def main() -> None:
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
-        def render_messages(console: Console, x: int, y: int, message_log: MessageLog) -> None:
-            message_console = Console(console.width, len(message_log.get_messages()))
-            message_console.draw_frame(0, 0, message_console.width, message_console.height)
-            for i, message in enumerate(message_log.get_messages()):
-                message_console.print(0, i, str(message), fg=message.fg)
-            console.blit(message_console, x, y)
 
         while True:
             engine.render(console=root_console, context=context)
@@ -66,7 +60,7 @@ def main() -> None:
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
             engine.event_handler.handle_events()
             
-from render_functions import render_bar
+from render_functions import render_bar, render_messages
 
 def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, messages: List[str]) -> None:
     print("render_gui called")

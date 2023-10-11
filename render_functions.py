@@ -14,3 +14,9 @@ def render_bar(console: tcod.Console, current_value: int, maximum_value: int, to
     console.print(
         int(total_width / 2), 1, f"HP: {current_value}/{maximum_value}", fg=(255, 255, 255), alignment=tcod.CENTER
     )
+def render_messages(console: Console, x: int, y: int, message_log: MessageLog) -> None:
+    message_console = Console(console.width, len(message_log.get_messages()))
+    message_console.draw_frame(0, 0, message_console.width, message_console.height)
+    for i, message in enumerate(message_log.get_messages()):
+        message_console.print(0, i, str(message), fg=message.fg)
+    console.blit(message_console, x, y)

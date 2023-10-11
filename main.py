@@ -53,7 +53,7 @@ def main() -> None:
         root_console = tcod.Console(screen_width, screen_height, order="F")
         while True:
             engine.render(console=root_console, context=context)
-            render_messages(root_console, engine.messages)
+            render_gui(root_console, engine.messages)
             engine.event_handler.handle_events()
             
 def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:

@@ -4,7 +4,7 @@ from typing import List, Iterable
 from tcod.console import Console as Console
 from message_log import MessageLog
 
-import libtcodpy as tcod
+import tcod
 
 from engine import Engine
 import entity_factories

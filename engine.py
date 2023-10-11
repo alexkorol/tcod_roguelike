@@ -3,9 +3,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from message_log import MessageLog, Message
 
-from libtcodpy.context import Context
-from libtcodpy.console import Console as Console
-from libtcodpy.map import compute_fov
+from tcod.context import Context
+from tcod.console import Console as Console
+from tcod.map import compute_fov
 
 from input_handlers import EventHandler
 from render_functions import render_bar, render_messages

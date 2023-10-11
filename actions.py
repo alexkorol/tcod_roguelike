@@ -9,26 +9,31 @@ if TYPE_CHECKING:
     from entity import Actor, Entity
 
 
-class Action:
-    def __init__(self, entity: Actor) -> None:
-        super().__init__()
-        self.entity = entity
+class PickupAction(Action):
+    """Represents the action of picking up an item."""
 
-    @property
-    def engine(self) -> Engine:
-        """Return the engine this action belongs to."""
-        return self.entity.gamemap.engine
+    def __init__(self, entity: Actor, item: Item):
+        super().__init__(entity)
+        self.item = item
 
     def perform(self) -> None:
-        """Perform this action with the objects needed to determine its scope.
+        """Perform this action with the objects needed to determine its scope."""
+        self.entity.inventory.add_item(self.item)
+        self.engine.game_map.entities.remove(self.item)
 
-        'self.engine' is the scope this action is being performed in.
 
-        'self.entity' is the object performing the action.
+class DropItem(Action):
+    """Represents the action of dropping an item."""
 
-        This method must be overridden by Action subclasses.
-        """
-        raise NotImplementedError()
+    def __init__(self, entity: Actor, item: Item):
+        super().__init__(entity)
+        self.item = item
+
+    def perform(self) -> None:
+        """Perform this action with the objects needed to determine its scope."""
+        self.entity.inventory.remove_item(self.item)
+        self.item.place(self.entity.x, self.entity.y, self.engine.game_map)
+        self.engine.game_map.entities.add(self.item)
 
 
 class EscapeAction(Action):

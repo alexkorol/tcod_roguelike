@@ -47,21 +47,54 @@ WAIT_KEYS = {
 }
 
 
-class EventHandler(tcod.event.EventDispatch[Action]):
-    def __init__(self, engine: Engine):
-        self.engine = engine
+class InventoryEventHandler(EventHandler):
+    """Handle inventory input events."""
 
-    def handle_events(self) -> None:
-        for event in tcod.event.wait():
-            action = self.dispatch(event)
+    def on_show_inventory(self) -> None:
+        """Show the inventory menu."""
+        raise NotImplementedError()
 
-            if action is None:
-                continue
-            
-            action.perform()
+    def on_drop_inventory(self) -> None:
+        """Show the drop item menu."""
+        raise NotImplementedError()
 
-            self.engine.handle_enemy_turns()
-            self.engine.update_fov() # Update the FOV before the players next action.
+
+class InventoryActivateHandler(InventoryEventHandler):
+    """Handle inventory activation events."""
+
+    def on_show_inventory(self) -> None:
+        """Show the inventory menu for item activation."""
+        self.engine.message_log.add_message("Select an item to use it.", tcod.yellow)
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
+        player = self.engine.player
+        key = event.sym
+        index = key - tcod.event.K_a
+
+        if 0 <= index < len(player.inventory.items):
+            item = player.inventory.items[index]
+
+            # Return the action for the selected item
+            return item.consumable.get_action(player)
+
+
+class InventoryDropHandler(InventoryEventHandler):
+    """Handle inventory drop events."""
+
+    def on_drop_inventory(self) -> None:
+        """Show the inventory menu for item dropping."""
+        self.engine.message_log.add_message("Select an item to drop it.", tcod.yellow)
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
+        player = self.engine.player
+        key = event.sym
+        index = key - tcod.event.K_a
+
+        if 0 <= index < len(player.inventory.items):
+            item = player.inventory.items[index]
+
+            # Return the action to drop the selected item
+            return DropItem(player, item)
 
 
     def ev_quit(self, event: tcod.event.Quit) -> Optional[Action]:

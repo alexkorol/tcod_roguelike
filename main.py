@@ -1,4 +1,6 @@
 import tcod
+from message_log import MessageLog
+from render_functions import render_bar
 
 def render_gui(console: tcod.Console, current_value: int, maximum_value: int, total_width: int, message_log: MessageLog) -> None:
     if isinstance(console, tcod.Console) and isinstance(current_value, int) and isinstance(maximum_value, int) and isinstance(total_width, int):

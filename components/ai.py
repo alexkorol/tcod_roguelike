@@ -54,7 +54,10 @@ class HostileEnemy(BaseAI):
     def __init__(self, entity: Actor, engine: Engine):
         super().__init__(entity, engine)
         self.path: List[Tuple[int, int]] = []
-        self.engine = engine
+        if engine is not None:
+            self.engine = engine
+        else:
+            raise ValueError("Engine must not be None.")
 
     @property
     def engine(self):

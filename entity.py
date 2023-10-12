@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from components.fighter import Fighter
     from components.consumable import Consumable
     from game_map import GameMap
+    from engine import Engine
     
 
 T = TypeVar("T", bound="Entity")

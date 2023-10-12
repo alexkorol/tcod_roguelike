@@ -21,7 +21,7 @@ player = Actor(
     fighter=Fighter(hp=30, defense=2, power=5),
     inventory=Inventory(26),
     render_order=RenderOrder.ACTOR,
-    engine=Engine()
+    engine=Engine(player, message_console, message_log)
 )
 
 orc = Actor(

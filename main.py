@@ -53,8 +53,8 @@ def main() -> None:
         player.engine = engine
         orc.engine = engine
         troll.engine = engine
-        else:
-            raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
+    else:
+        raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
 
         max_items_per_room = 2
         engine.game_map = generate_dungeon(

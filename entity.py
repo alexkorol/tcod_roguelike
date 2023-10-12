@@ -19,6 +19,7 @@ class Entity:
     """
 
     gamemap: GameMap
+    engine: Engine
 
     def __init__(
         self,
@@ -29,6 +30,7 @@ class Entity:
         color: Tuple[int, int, int] = (255, 255, 255),
         name: str = "<Unnamed>",
         blocks_movement: bool = False,
+        engine: Optional[Engine] = None,
     ):
         self.x = x
         self.y = y

@@ -9,13 +9,15 @@ if TYPE_CHECKING:
     from entity import Actor, Entity, Item
 
 class Action:
-    def __init__(self, entity: Actor):
+    def __init__(self, entity: Actor, engine: Engine):
         """
         A base class for all action classes.
         :param entity: The Actor that performs the action.
+        :param engine: The Engine instance this action belongs to.
         """
         super().__init__()
         self.entity = entity
+        self.engine = engine
 
     def perform(self) -> None:
         """

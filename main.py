@@ -31,7 +31,7 @@ def main() -> None:
         "Data/dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
 
-    player = entity_factories.player()
+    player = entity_factories.player  # Remove parentheses to assign the class itself
     orc = entity_factories.orc()
     troll = entity_factories.troll()
 

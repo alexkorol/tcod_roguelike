@@ -43,12 +43,15 @@ class Engine:
 
     def render(self, console: Console, context: Context) -> None:
         print("Rendering started")
+        print("Rendering game map")
         self.game_map.render(console)
+        print("Rendering bar")
         render_bar(console, self.player.fighter.hp, self.player.fighter.max_hp, 20)
+        print("Rendering message log")
         self.message_log.render(console=console, x=21, y=45, width=40, height=5)
-
+        print("Presenting context")
         context.present(console)
-
+        print("Clearing console")
         console.clear()
         print("Rendering finished")
         

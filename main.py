@@ -31,11 +31,9 @@ def main() -> None:
         "Data/dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
 
-    player = copy.deepcopy(entity_factories.player)
-    orc = copy.deepcopy(entity_factories.orc)
-    orc.engine = engine
-    troll = copy.deepcopy(entity_factories.troll)
-    troll.engine = engine
+    player = entity_factories.player(engine)
+    orc = entity_factories.orc(engine)
+    troll = entity_factories.troll(engine)
 
     player.inventory = Inventory(26)  # Giving the player an inventory with a capacity of 26
 

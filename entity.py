@@ -96,7 +96,7 @@ class Actor(Entity):
             engine=engine
         )
 
-        self.ai: Optional[BaseAI] = ai_cls(self) if ai_cls else None
+        self.ai: Optional[BaseAI] = ai_cls(self, engine) if ai_cls is not None else None
         self.fighter = fighter
         self.fighter.entity = self
         self.inventory = inventory

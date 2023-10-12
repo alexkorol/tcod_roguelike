@@ -8,9 +8,15 @@ import tcod
 from actions import Action, MeleeAction, MovementAction, WaitAction
 from components.base_component import BaseComponent
 
-if TYPE_CHECKING:
-    from entity import Actor
-    from engine import Engine
+from entity import Actor
+from engine import Engine
+
+engine = Engine()
+player = Actor(x=0, y=0, char="@")
+enemy =HostileEnemy(entity=Actor(x=1, y=1, char="E"), engine=engine)
+
+engine.player = player
+engine.game_map.entities.add(player, enemy.entity)
 
 class BaseAI(Action, BaseComponent):
     entity: Actor

@@ -80,7 +80,8 @@ class Actor(Entity):
         ai_cls: Type[BaseAI],
         fighter: Fighter,
         inventory: Inventory,
-        render_order: RenderOrder
+        render_order: RenderOrder,
+        engine: Engine
     ):
         super().__init__(
             x=x,
@@ -89,9 +90,10 @@ class Actor(Entity):
             color=color,
             name=name,
             blocks_movement=True,
+            engine=engine
         )
 
-        self.ai: Optional[BaseAI] = ai_cls(self)
+        self.ai: Optional[BaseAI] = ai_cls(self, engine)
         self.fighter = fighter
         self.fighter.entity = self
         self.inventory = inventory

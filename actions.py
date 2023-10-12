@@ -62,8 +62,8 @@ class WaitAction(Action):
         pass
 
 class ActionWithDirection(Action):
-    def __init__(self, entity: Actor, dx: int, dy: int):
-        super().__init__(entity)
+    def __init__(self, entity: Actor, dx: int, dy: int, engine: Engine):
+        super().__init__(entity, engine)
 
         self.dx = dx
         self.dy = dy

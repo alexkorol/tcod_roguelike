@@ -70,9 +70,11 @@ def main() -> None:
         message_console.clear()
 
         while True:
+            engine.event_handler.handle_events()
+            engine.handle_enemy_turns()
+            engine.update_fov()
             engine.render(console=root_console, context=context)
             render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
-            engine.event_handler.handle_events()
             
 from render_functions import render_bar
 

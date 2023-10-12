@@ -42,6 +42,7 @@ class Engine:
         self.game_map.explored |= self.game_map.visible
 
     def render(self, console: Console, context: Context) -> None:
+        print("Rendering started")
         self.game_map.render(console)
         render_bar(console, self.player.fighter.hp, self.player.fighter.max_hp, 20)
         self.message_log.render(console=console, x=21, y=45, width=40, height=5)
@@ -49,4 +50,5 @@ class Engine:
         context.present(console)
 
         console.clear()
+        print("Rendering finished")
         

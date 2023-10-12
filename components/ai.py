@@ -14,6 +14,9 @@ if TYPE_CHECKING:
 class BaseAI(Action, BaseComponent):
     entity: Actor
 
+    def __init__(self, entity: Actor, engine: Engine):
+        super().__init__(entity, engine)
+
     def perform(self) -> None:
         raise NotImplementedError()
     
@@ -47,8 +50,8 @@ class BaseAI(Action, BaseComponent):
         return [(index[0], index[1]) for index in path]
 
 class HostileEnemy(BaseAI):
-    def __init__(self, entity: Actor):
-        super().__init__(entity)
+    def __init__(self, entity: Actor, engine: Engine):
+        super().__init__(entity, engine)
         self.path: List[Tuple[int, int]] = []
 
     def perform(self) -> None:

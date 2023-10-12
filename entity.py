@@ -84,7 +84,7 @@ class Actor(Entity):
         fighter: Fighter,
         inventory: Inventory,
         render_order: RenderOrder,
-        engine: Engine
+        engine: Optional[Engine] = None
     ):
         super().__init__(
             x=x,

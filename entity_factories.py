@@ -21,7 +21,7 @@ player = Actor(
     fighter=Fighter(hp=30, defense=2, power=5),
     inventory=Inventory(26),
     render_order=RenderOrder.ACTOR,
-    engine=Engine
+    engine=Engine()
 )
 
 orc = Actor(
@@ -32,7 +32,7 @@ orc = Actor(
     fighter=Fighter(hp=10, defense=0, power=3),
     inventory=Inventory(0),
     render_order=RenderOrder.ACTOR,
-    engine=Engine
+    engine=Engine()
 )
 troll = Actor(
     char="T",
@@ -42,5 +42,5 @@ troll = Actor(
     fighter=Fighter(hp=16, defense=1, power=4),
     inventory=Inventory(0),
     render_order=RenderOrder.ACTOR,
-    engine=Engine
+    engine=Engine()
 )

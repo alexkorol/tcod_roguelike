@@ -42,7 +42,16 @@ class BaseAI(Action, BaseComponent):
 class HostileEnemy(BaseAI):
     def __init__(self, entity: Actor, engine: Engine):
         super().__init__(entity, engine)
+        self._engine = engine
         self.path: List[Tuple[int, int]] = []
+
+    @property
+    def engine(self) -> Engine:
+        return self._engine
+
+    @engine.setter
+    def engine(self, value: Engine) -> None:
+        self._engine = value
 
     def perform(self) -> None:
         target = self.engine.player

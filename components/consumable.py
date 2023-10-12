@@ -3,12 +3,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from components.fighter import Fighter
-from exceptions import Impossible
+from components.base_component import BaseComponent
 
 if TYPE_CHECKING:
     from entity import Actor, Item
 
-class Consumable(Component):
+class Consumable(BaseComponent):
     def get_action(self, consumer: Actor) -> Action:
         """Try to return the action for this item."""
         raise NotImplementedError()

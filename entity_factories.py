@@ -1,7 +1,7 @@
 from components.ai import HostileEnemy
 from components.fighter import Fighter
 from entity import Actor, Item, HealingConsumable
-from components.inventory import Inventory
+from entity import Inventory
 from components.render_order import RenderOrder
 from components.consumable import Consumable
 

@@ -71,7 +71,7 @@ def main() -> None:
 
         while True:
             engine.render(console=root_console, context=context)
-            render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log, message_console_height)
+            render_gui(root_console, engine.player.fighter.hp, engine.player.fighter.max_hp, 20, engine.message_log)
             engine.event_handler.handle_events()
             
 from render_functions import render_bar

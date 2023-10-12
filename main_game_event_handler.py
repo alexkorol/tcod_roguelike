@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 import tcod.event
 
 from actions import Action, BumpAction, EscapeAction, WaitAction
+from input_handlers import MainEventHandler
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -17,6 +18,10 @@ class EventHandler:
 class MainGameEventHandler(EventHandler):
     def __init__(self, engine: Engine):
         self.engine = engine
+
+    def handle_events(self):
+        event_handler = MainEventHandler(self.engine)
+        event_handler.handle_events()
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
         action: Optional[Action] = None
@@ -37,3 +42,5 @@ class MainGameEventHandler(EventHandler):
 
         # No valid key pressed
         return action
+    
+    

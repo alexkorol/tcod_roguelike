@@ -1,7 +1,9 @@
 import tcod
-from tcod.console import Console as Console
+from tcod.console import Console
+
+
 from message_log import MessageLog
-def render_bar(console: tcod.Console, current_value: int, maximum_value: int, total_width: int) -> None:
+def render_bar(console: Console, current_value: int, maximum_value: int, total_width: int) -> None:
     bar_width = int(float(current_value) / maximum_value * total_width)
 
     # Draw the total HP bar in red

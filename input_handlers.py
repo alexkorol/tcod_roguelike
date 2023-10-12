@@ -8,16 +8,6 @@ import tcod.event
 from actions import Action, BumpAction, EscapeAction, WaitAction
 from main_game_event_handler import MainGameEventHandler, EventHandler
 
-if TYPE_CHECKING:
-    from typing import TYPE_CHECKING
-
-    if TYPE_CHECKING:
-        # Removed import of Engine
-        pass
-    else:
-        Engine = 'Engine'
-
-
 MOVE_KEYS = {
     # Arrow keys.
     tcod.event.KeySym.UP: (0, -1),

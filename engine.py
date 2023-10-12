@@ -20,11 +20,14 @@ class Engine:
     message_log: MessageLog
     message_console: Console
 
-    def __init__(self, player: Entity, message_console: Console, message_log: MessageLog):
+    def __init__(self, player: Optional[Entity] = None, message_console: Console, message_log: MessageLog):
         self.event_handler: MainGameEventHandler = MainGameEventHandler(self)
         self.player = player
         self.message_log = message_log
         self.message_console = message_console
+
+    def set_player(self, player: Entity):
+        self.player = player
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:

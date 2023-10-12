@@ -32,6 +32,9 @@ def main() -> None:
     )
 
     player = copy.deepcopy(entity_factories.player)
+    orc = copy.deepcopy(entity_factories.orc)
+    troll = copy.deepcopy(entity_factories.troll)
+
     player.inventory = Inventory(26)  # Giving the player an inventory with a capacity of 26
 
     message_console_height = 5

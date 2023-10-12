@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 class BaseAI(Action, BaseComponent):
     entity: Actor
+    engine: Engine
 
     def __init__(self, entity: Actor, engine: Engine):
         super().__init__(entity, engine)
@@ -53,6 +54,15 @@ class HostileEnemy(BaseAI):
     def __init__(self, entity: Actor, engine: Engine):
         super().__init__(entity, engine)
         self.path: List[Tuple[int, int]] = []
+        self.engine = engine
+
+    @property
+    def engine(self):
+        return self._engine
+
+    @engine.setter
+    def engine(self, engine: Engine):
+        self._engine = engine
 
     def perform(self) -> None:
         target = self.engine.player

@@ -48,6 +48,9 @@ def main() -> None:
         root_console = tcod.console.Console(screen_width, screen_height + message_console_height, order="F")
 
         message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
+        player.engine = engine
+        orc.engine = engine
+        troll.engine = engine
         if isinstance(player, Entity) and isinstance(message_console, Console):
             engine = Engine(player=player, message_console=message_console, message_log=message_log)
         else:

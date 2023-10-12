@@ -3,6 +3,8 @@ from __future__ import annotations
 import copy
 from typing import Optional, Tuple, Type, TypeVar, TYPE_CHECKING
 
+import tcod
+
 if TYPE_CHECKING:
     from components.ai import BaseAI
     from components.fighter import Fighter

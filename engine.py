@@ -20,7 +20,7 @@ class Engine:
     message_log: MessageLog
     message_console: Console
 
-    def __init__(self, player: Optional[Entity] = None, message_console: Console, message_log: MessageLog):
+    def __init__(self, player: Optional[Entity] = None, message_console: Console = None, message_log: MessageLog = None):
         self.event_handler: MainGameEventHandler = MainGameEventHandler(self)
         self.player = player
         self.message_log = message_log

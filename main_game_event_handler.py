@@ -1,11 +1,9 @@
-# Moved MainGameEventHandler class to this new file
 from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
+from typing import TYPE_CHECKING, Optional
 import tcod.event
-
 from actions import Action, BumpAction, EscapeAction, WaitAction
+# Ensure to import InventoryAction if it's defined in the actions module
+from actions import InventoryAction
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -19,14 +17,12 @@ class MainGameEventHandler(EventHandler):
         self.engine = engine
 
     def handle_events(self):
-        event_handler = MainEventHandler(self.engine)
-        event_handler.handle_events()
+        # TODO: Implement the logic for handling events in this subclass.
+        pass
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
         action: Optional[Action] = None
-
         key = event.sym
-
         player = self.engine.player
 
         if key in MOVE_KEYS:
@@ -34,12 +30,11 @@ class MainGameEventHandler(EventHandler):
             action = BumpAction(player, dx, dy)
         elif key in WAIT_KEYS:
             action = WaitAction(player)
-
         elif key == tcod.event.K_i:
             # Inventory actions
             action = InventoryAction(player)
 
         # No valid key pressed
         return action
-    
+
     

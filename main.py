@@ -50,11 +50,11 @@ def main() -> None:
         message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
         if isinstance(player, Entity) and isinstance(message_console, Console):
             engine = Engine(player=player, message_console=message_console, message_log=message_log)
-        player.engine = engine
-        orc.engine = engine
-        troll.engine = engine
-    else:
-        raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
+            player.engine = engine
+            orc.engine = engine
+            troll.engine = engine
+        else:
+            raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
 
         max_items_per_room = 2
         engine.game_map = generate_dungeon(

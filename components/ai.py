@@ -10,6 +10,7 @@ from components.base_component import BaseComponent
 
 if TYPE_CHECKING:
     from entity import Actor
+    from engine import Engine
 
 class BaseAI(Action, BaseComponent):
     entity: Actor

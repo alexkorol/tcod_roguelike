@@ -5,12 +5,10 @@ from typing import Iterator, List, Tuple, TYPE_CHECKING
 
 import tcod
 
-import entity_factories
 from entity_factories import health_potion
 from game_map import GameMap
 import tile_types
-
-from engine import Engine
+import entity_factories
 
 if TYPE_CHECKING:
     from engine import Engine

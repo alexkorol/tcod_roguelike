@@ -1,48 +1,38 @@
 from __future__ import annotations
-
 from typing import List, Tuple, TYPE_CHECKING
-
 import numpy as np
 import tcod
-
 from actions import Action, MeleeAction, MovementAction, WaitAction
 from components.base_component import BaseComponent
-
 from entity import Actor
 from engine import Engine
+from components.fighter import Fighter
+from entity import Inventory
+from components.render_order import RenderOrder
 
-engine = Engine()
-player = Actor(x=0, y=0, char="@")
-enemy =HostileEnemy(entity=Actor(x=1, y=1, char="E"), engine=engine)
 
-engine.player = player
-engine.game_map.entities.add(player, enemy.entity)
+if TYPE_CHECKING:
+    from engine import Engine
+    from entity import Actor
 
 class BaseAI(Action, BaseComponent):
-    entity: Actor
-    engine: Engine
-
     def __init__(self, entity: Actor, engine: Engine):
-        super().__init__(entity, engine)
+        Action.__init__(self, entity, engine)
+        BaseComponent.__init__(self, entity) 
+        self._engine = engine
 
     def perform(self) -> None:
         raise NotImplementedError()
-    
-    def get_path_to(self, dest_x: int, dest_y: int) -> List[Tuple[int, int]]:
-        # Copy the walkable array.
-        cost = np.array(self.entity.gamemap.tiles["walkable"], dtype=np.int8)
 
+    def get_path_to(self, dest_x: int, dest_y: int) -> List[Tuple[int, int]]:
+        cost = np.array(self.entity.gamemap.tiles["walkable"], dtype=np.int8)
         for entity in self.entity.gamemap.entities:
             if entity.blocks_movement and cost[entity.x, entity.y]:
                 cost[entity.x, entity.y] += 10
-            
         graph = tcod.path.SimpleGraph(cost=cost, cardinal=2, diagonal=3)
         pathfinder = tcod.path.Pathfinder(graph)
-
         pathfinder.add_root((self.entity.x, self.entity.y))
-
         path: List[List[int]] = pathfinder.path_to((dest_x, dest_y))[1:].tolist()
-
         return [(index[0], index[1]) for index in path]
 
 class HostileEnemy(BaseAI):
@@ -60,6 +50,10 @@ class HostileEnemy(BaseAI):
         self._engine = value
 
     def perform(self) -> None:
+        if self.engine is None:
+            print("Debug: Engine is None")
+            return
+
         target = self.engine.player
         dx = target.x - self.entity.x
         dy = target.y - self.entity.y

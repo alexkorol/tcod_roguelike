@@ -12,7 +12,7 @@ from procgen import generate_dungeon
 from components.render_order import RenderOrder
 from entity import Entity
 from entity import Inventory
-
+from render_functions import render_messages, render_bar 
 
 def main() -> None:
     screen_width = 80
@@ -31,21 +31,26 @@ def main() -> None:
         "Data/dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
 
-    engine =Engine()
     player = copy.deepcopy(entity_factories.player)
     orc = copy.deepcopy(entity_factories.orc)
     troll = copy.deepcopy(entity_factories.troll)
 
-
-    # player = entity_factories.player(engine)
-    # orc = entity_factories.orc(engine)
-    # troll = entity_factories.troll(engine)
-
-    player.inventory = Inventory(26)  # Giving the player an inventory with a capacity of 26
-
     message_console_height = 5
     message_console = tcod.console.Console(screen_width, message_console_height, order="F")
     message_console.clear(fg=(255, 255, 255), bg=(50, 50, 50))
+    message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
+
+    engine = Engine(player=player, 
+                message_console=message_console,
+                message_log=message_log)
+
+    engine.player = player
+
+    player.inventory = Inventory(26)  # Giving the player an inventory with a capacity of 26
+
+    player.engine = engine
+    orc.engine = engine
+    troll.engine = engine
 
     with tcod.context.new_terminal(
         screen_width,
@@ -56,16 +61,6 @@ def main() -> None:
     ) as context:
         root_console = tcod.console.Console(screen_width, screen_height + message_console_height, order="F")
 
-        message_log = MessageLog(x=0, width=screen_width, height=message_console_height)
-        if isinstance(player, Entity) and isinstance(message_console, Console):
-            engine = Engine(player=player, message_console=message_console, message_log=message_log)
-            player.engine = engine
-            orc.engine = engine
-            troll.engine = engine
-        else:
-            raise TypeError("Player must be an instance of Entity and message_console must be an instance of Console.")
-
-        max_items_per_room = 2
         engine.game_map = generate_dungeon(
             max_rooms=max_rooms,
             room_min_size=room_min_size,
@@ -73,7 +68,7 @@ def main() -> None:
             map_width=map_width,
             map_height=map_height,
             max_monsters_per_room=max_monsters_per_room,
-            max_items_per_room=max_items_per_room,
+            max_items_per_room = 2,
             engine=engine,
         )
 

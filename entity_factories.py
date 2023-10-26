@@ -14,6 +14,9 @@ health_potion = Item(
 )
 
 player = Actor(
+
+    x=0,
+    y=0,
     char="@",
     color=(255, 255, 255),
     name="Player",
@@ -22,6 +25,7 @@ player = Actor(
     inventory=Inventory(26),
     render_order=RenderOrder.ACTOR
 )
+
 
 orc = Actor(
     char="o",

@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -7,7 +6,8 @@ if TYPE_CHECKING:
     from entity import Entity
 
 class BaseComponent:
-    entity: Entity # Owning entity instance.
+    def __init__(self, entity: Entity):  # Modified to accept an entity
+        self.entity = entity  # Set the entity here
 
     @property
     def engine(self) -> Engine:

@@ -9,6 +9,9 @@ if TYPE_CHECKING:
     from entity import Actor, Item
 
 class Consumable(BaseComponent):
+    def __init__(self, on_use_function=None):
+        self.on_use_function = on_use_function
+
     def get_action(self, consumer: Actor) -> Action:
         """Try to return the action for this item."""
         raise NotImplementedError()

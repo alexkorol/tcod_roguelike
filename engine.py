@@ -1,12 +1,14 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from tcod.context import Context
 from tcod.console import Console
 from tcod.map import compute_fov
 
 from input_handlers import EventHandler
+from render_functions import render_bar
+from message_log import MessageLog 
 
 if TYPE_CHECKING:
     from entity import Entity
@@ -20,6 +22,7 @@ class Engine:
         self.event_handler: EventHandler = EventHandler(self)
         self.player = player
         self.messages = []
+        self.message_log = MessageLog()
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:
@@ -38,6 +41,15 @@ class Engine:
 
     def render(self, console: Console, context: Context) -> None:
         self.game_map.render(console)
+
+        render_bar(
+            console=console,
+            current_value=self.player.fighter.hp,
+            maximum_value=self.player.fighter.max_hp,
+            total_width=20,
+        )
+
+        self.message_log.render(console=console, x=21, y=45, width=40, height=5)
 
         context.present(console)
 

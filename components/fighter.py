@@ -1,5 +1,6 @@
 from components.base_component import BaseComponent
 from components.render_order import RenderOrder
+from message_log import Message
 
 class Fighter(BaseComponent):
     def __init__(self, hp: int, defense: int, power: int):
@@ -29,7 +30,7 @@ class Fighter(BaseComponent):
         self.entity.name = f"{self.entity.name} Corpse"
         self.entity.render_order = RenderOrder.CORPSE
 
-        print(death_message)
+        self.entity.gamemap.engine.message_log.add_message(Message(death_message, (255, 0, 0)))
 
     def take_damage(self, amount: int) -> None:
         self.hp -= amount

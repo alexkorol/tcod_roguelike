@@ -1,3 +1,4 @@
+# Removed MainGameEventHandler class and updated import
 from __future__ import annotations
 
 from typing import Optional, TYPE_CHECKING
@@ -5,10 +6,7 @@ from typing import Optional, TYPE_CHECKING
 import tcod.event
 
 from actions import Action, BumpAction, EscapeAction, WaitAction
-
-if TYPE_CHECKING:
-    from engine import Engine
-
+from main_game_event_handler import MainGameEventHandler, EventHandler
 
 MOVE_KEYS = {
     # Arrow keys.
@@ -47,25 +45,60 @@ WAIT_KEYS = {
 }
 
 
-class EventHandler(tcod.event.EventDispatch[Action]):
-    def __init__(self, engine: Engine):
-        self.engine = engine
+class InventoryEventHandler(EventHandler):
+    """Handle inventory input events."""
 
-    def handle_events(self) -> None:
-        for event in tcod.event.wait():
-            action = self.dispatch(event)
+    def on_show_inventory(self) -> None:
+        """Show the inventory menu."""
+        raise NotImplementedError()
 
-            if action is None:
-                continue
-            
-            action.perform()
-
-            self.engine.handle_enemy_turns()
-            self.engine.update_fov() # Update the FOV before the players next action.
+    def on_drop_inventory(self) -> None:
+        """Show the drop item menu."""
+        raise NotImplementedError()
 
 
-    def ev_quit(self, event: tcod.event.Quit) -> Optional[Action]:
-        raise SystemExit()
+class InventoryActivateHandler(InventoryEventHandler):
+    """Handle inventory activation events."""
+
+    def on_show_inventory(self) -> None:
+        """Show the inventory menu for item activation."""
+        self.engine.message_log.add_message("Select an item to use it.", tcod.yellow)
+
+
+
+class InventoryDropHandler(InventoryEventHandler):
+    """Handle inventory drop events."""
+
+    def on_drop_inventory(self) -> None:
+        """Show the inventory menu for item dropping."""
+        self.engine.message_log.add_message("Select an item to drop it.", tcod.yellow)
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
+        player = self.engine.player
+        key = event.sym
+        index = key - tcod.event.K_a
+
+        if 0 <= index < len(player.inventory.items):
+            item = player.inventory.items[index]
+
+            # Return the action to drop the selected item
+            return DropItem(player, item)
+
+        action: Optional[Action] = None
+
+        if key in MOVE_KEYS:
+            dx, dy = MOVE_KEYS[key]
+            action = BumpAction(player, dx, dy)
+        elif key in WAIT_KEYS:
+            action = WaitAction(player)
+
+        elif key == tcod.event.KeySym.ESCAPE:
+            action = EscapeAction(player)
+
+        # No valid key pressed
+        return action
+
+
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[Action]:
         action: Optional[Action] = None

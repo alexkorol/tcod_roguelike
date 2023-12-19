@@ -1,25 +1,15 @@
 # Updated import of MainGameEventHandler
 from __future__ import annotations
 
-<<<<<<< HEAD
 from typing import TYPE_CHECKING, List
-=======
-from typing import TYPE_CHECKING
-from message_log import MessageLog, Message
->>>>>>> a13183d596d1e33f8e7c537c8535ea251fdbdbf9
 
 from tcod.context import Context
 from tcod.console import Console as Console
 from tcod.map import compute_fov
 
-<<<<<<< HEAD
 from input_handlers import EventHandler
 from render_functions import render_bar
 from message_log import MessageLog 
-=======
-from main_game_event_handler import MainGameEventHandler
-from render_functions import render_bar, render_messages
->>>>>>> a13183d596d1e33f8e7c537c8535ea251fdbdbf9
 
 if TYPE_CHECKING:
     from entity import Entity
@@ -38,11 +28,8 @@ class Engine:
 
     def set_player(self, player: Entity):
         self.player = player
-<<<<<<< HEAD
         self.messages = []
         self.message_log = MessageLog()
-=======
->>>>>>> a13183d596d1e33f8e7c537c8535ea251fdbdbf9
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:
@@ -63,7 +50,6 @@ class Engine:
         print("Rendering started")
         print("Rendering game map")
         self.game_map.render(console)
-<<<<<<< HEAD
 
         render_bar(
             console=console,
@@ -74,13 +60,6 @@ class Engine:
 
         self.message_log.render(console=console, x=21, y=45, width=40, height=5)
 
-=======
-        print("Rendering bar")
-        render_bar(console, self.player.fighter.hp, self.player.fighter.max_hp, 20)
-        print("Rendering message log")
-        self.message_log.render(console=console, x=21, y=45, width=40, height=5)
-        print("Presenting context")
->>>>>>> a13183d596d1e33f8e7c537c8535ea251fdbdbf9
         context.present(console)
         print("Clearing console")
         console.clear()

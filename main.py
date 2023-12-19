@@ -8,6 +8,8 @@ from engine import Engine
 import entity_factories
 from procgen import generate_dungeon
 from components.render_order import RenderOrder
+from typing import List
+import tcod
 
 
 def main() -> None:
@@ -74,12 +76,55 @@ def render_gui(console: tcod.Console, messages: List[str]) -> None:
         y -= 1
 
 def main() -> None:
-    # ... existing code ...
+    screen_width = 80
+    screen_height = 60
+    
+    map_width = 80
+    map_height = 45
 
-    while True:
-        Engine.render(console=root_console, context=context)
-        render_gui(root_console, engine.messages)
-        engine.event_handler.handle_events()
+    room_max_size = 10
+    room_min_size = 6
+    max_rooms = 30
+
+    max_monsters_per_room = 2
+
+    tileset = tcod.tileset.load_tilesheet(
+        "Data/dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
+    )
+
+    player = copy.deepcopy(entity_factories.player)
+
+    engine = Engine(player=player)
+
+    engine.game_map = generate_dungeon(
+        max_rooms=max_rooms,
+        room_min_size=room_min_size,
+        room_max_size=room_max_size,
+        map_width=map_width,
+        map_height=map_height,
+        max_monsters_per_room=max_monsters_per_room,
+        engine=engine,
+    )
+
+    engine.update_fov()
+
+    with tcod.context.new_terminal(
+        screen_width,
+        screen_height,
+        tileset=tileset,
+        title="Alexei's Roguelike",
+        vsync=True,
+    ) as context:
+        root_console = tcod.Console(screen_width, screen_height, order="F")
+        while True:
+            engine.render(console=root_console, context=context)
+            render_messages(root_console, engine.messages)
+            engine.event_handler.handle_events()
+
+def render_messages(console: tcod.Console, messages: List[str]) -> None:
+    y = console.height - 2
+    for message in messages:
+        console.print(console.width - 2, y, message, fg=(255, 255, 255), bg=(0, 0, 0), alignment=tcod.RIGHT)
 
 if __name__ == "__main__":
     main()
